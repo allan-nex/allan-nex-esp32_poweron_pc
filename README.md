@@ -18,7 +18,9 @@ Este projeto permite **ligar o seu computador** remotamente via **ESP32 integrad
 3. **Emissor do BC337** → GND da ESP32 + outro pino do botão Power (lado negativo)
 4. ESP32 e placa-mãe devem **compartilhar GND**
 
-Imagem do circuito: [Link para imagem do esquema](./docs/A_schematic_diagram_in_this_digital_illustration_d.png)
+## 🖼️ Esquema Eletrônico
+
+![Diagrama do circuito](docs/esp32_power.png)
 
 ## 🌐 Integração com Alexa via Sinric Pro
 
