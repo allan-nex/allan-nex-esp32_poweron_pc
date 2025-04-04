@@ -1,64 +1,35 @@
+#include <Arduino.h>
 
-// Projeto: Ligar o PC com ESP32 via Alexa (Sinric Pro)
-// Autor: ChatGPT + [Seu Nome Aqui]
-// Dependência: SinricPro (instalar pela biblioteca do Arduino IDE)
+// Definições dos pinos
+#define POWER_PIN 5  // GPIO para acionar o botão Power
+#define RESET_PIN 4  // GPIO para acionar o botão Reset
 
-#include <SinricPro.h>
-#include <SinricProSwitch.h>
+// Tempo de acionamento dos botões (em milissegundos)
+#define PRESS_TIME 500
 
-#define WIFI_SSID     "SUA_REDE_WIFI"
-#define WIFI_PASS     "SENHA_WIFI"
-#define APP_KEY       "SINRICPRO_APP_KEY"
-#define APP_SECRET    "SINRICPRO_APP_SECRET"
-#define DEVICE_ID     "SINRICPRO_DEVICE_ID"
-
-#define POWER_PIN     5  // GPIO conectado ao transistor (BC337)
-
-void setupWiFi() {
-  Serial.print("Conectando ao WiFi...");
-  WiFi.begin(WIFI_SSID, WIFI_PASS);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("Conectado!");
-}
-
-bool onPowerState(const String &deviceId, bool &state) {
-  if (deviceId == DEVICE_ID) {
-    Serial.print("Comando recebido: ");
-    Serial.println(state ? "Ligar PC" : "Desligar (ignorado)");
-
-    if (state) {
-      digitalWrite(POWER_PIN, HIGH);
-      delay(500); // simula aperto do botão por 0,5s
-      digitalWrite(POWER_PIN, LOW);
-    }
-    return true;
-  }
-  return false;
-}
-
-void setupSinric() {
-  SinricProSwitch &meuSwitch = SinricPro[DEVICE_ID];
-  meuSwitch.onPowerState(onPowerState);
-
-  SinricPro.onConnected([]() { Serial.println("SinricPro conectado!"); });
-  SinricPro.onDisconnected([]() { Serial.println("SinricPro desconectado!"); });
-
-  SinricPro.begin(APP_KEY, APP_SECRET);
-  SinricPro.restoreDeviceStates(true);
+void pressButton(int pin) {
+  digitalWrite(pin, LOW);   // Simula o pressionar do botão (GND)
+  delay(PRESS_TIME);        // Tempo de pressionamento
+  digitalWrite(pin, HIGH);  // Solta o botão
 }
 
 void setup() {
-  Serial.begin(115200);
   pinMode(POWER_PIN, OUTPUT);
-  digitalWrite(POWER_PIN, LOW);
+  pinMode(RESET_PIN, OUTPUT);
 
-  setupWiFi();
-  setupSinric();
+  digitalWrite(POWER_PIN, HIGH);  // Inicialmente desligado
+  digitalWrite(RESET_PIN, HIGH);
+
+  Serial.begin(115200);
+  Serial.println("ESP32 Power & Reset pronto!");
 }
 
 void loop() {
-  SinricPro.handle();
+  // Exemplo: Pressionar o botão Power a cada 10 segundos
+  // pressButton(POWER_PIN);
+  // delay(10000);
+
+  // Exemplo: Pressionar Reset (comente ou apague se não for usar)
+  // pressButton(RESET_PIN);
+  // delay(30000);
 }
