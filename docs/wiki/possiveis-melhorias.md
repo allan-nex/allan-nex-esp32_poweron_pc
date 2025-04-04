@@ -1,16 +1,13 @@
-# 🚀 Possíveis Melhorias
+# Possíveis melhorias
 
-Algumas ideias para aprimorar o projeto:
+Algumas ideias para expandir ou aprimorar o projeto:
 
-## 📴 Desligamento via ESP32
-- Pressionar o botão por mais de 4 segundos simula um "force shutdown".
-- Pode-se programar o ESP32 para enviar esse sinal longo com um segundo comando Alexa.
+- ✅ **Desligar o PC**: Enviar o comando de desligar via rede, ou programar um tempo de "pressionar o botão Power";
+- 🧠 **Sensor de status do PC**:
+  - Utilizar um optoacoplador ou sensor de tensão nos 5V da USB (quando o PC está ligado);
+  - Indicar status via LED ou retornar para automações;
+- 📦 **Caixinha impressa em 3D**: Para acomodar o ESP32 e proteger os fios;
+- 📡 **Controle por MQTT ou Home Assistant**: Para maior integração com automações complexas;
+- 🔌 **Alimentação separada** do ESP32 via fonte dedicada (ex: carregador de celular), evitando dependência do PC.
 
-## 📶 Leitura do Estado do PC
-- Use uma linha 5V (ex: USB) para detectar se o PC está ligado.
-- Um divisor de tensão pode proteger o GPIO do ESP32.
-- Isso permite atualizar o status real do PC na Alexa.
-
-## 🔁 Feedback Inteligente para Alexa
-- Com Sinric Pro, é possível atualizar o estado do dispositivo remotamente (`device.setPowerState()`).
-- Isso melhora a interação com a Alexa e evita comandos redundantes.
+Essas melhorias ajudam a tornar o sistema mais seguro, robusto e funcional.
