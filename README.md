@@ -6,7 +6,7 @@ Controle seu computador remotamente utilizando um ESP32 integrado à Alexa (via 
 
 ### Circuito com Botão Power e Reset
 
-![Esquema do Circuito](docs/imgs/esp32_power_reset.png)
+<img src="docs/imgs/esp32_power_reset.png" alt="Esquema do Circuito" width="480">
 
 <sub>Figura: Esquema com controle do botão Power (GPIO 2) e Reset (GPIO 4).</sub>
 
