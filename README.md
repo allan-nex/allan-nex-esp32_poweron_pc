@@ -2,7 +2,7 @@
 
 Controle seu computador remotamente utilizando um ESP32 integrado à Alexa (via Sinric Pro). Acione o botão Power — e opcionalmente o botão Reset — por comando de voz.
 
-![Esquema do Circuito](docs/esp32_power_reset.png)
+![Esquema do Circuito](docs/imgs/esp32_power_reset.png)
 
 ---
 
